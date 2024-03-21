@@ -4,24 +4,21 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        node-version: [18.x]
+        node-version: [16.x]
         appname: ['new-pipeline-github']
-        deploy-group: [depl-newpipel']
+        deploy-group: ['depl-newpipel']
         s3-bucket: ['new-pipe1']
         s3-filename: ['staging-aws-codedeploy-${{ github.sha }}']
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v1
     - uses: actions/checkout@v3
 
-    - name: Configure AWS Credentials
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
@@ -34,8 +31,6 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: us-east-1
 
-    - name: Deploy static site to S3 bucket
-      run: aws s3 sync . s3://portfollio1 --delete
     - name: chmod
       run: chmod -R +x  scripts/*
 
@@ -46,6 +41,7 @@ jobs:
           --description "This is a revision for the ${{ matrix.appname }}-${{ github.sha }}" \
           --s3-location s3://${{ matrix.s3-bucket }}/${{ matrix.s3-filename }}.zip \
           --source .
+
     - name: Create CodeDeploy Deployment
       id: deploy
       run: |
