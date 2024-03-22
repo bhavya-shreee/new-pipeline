@@ -2,7 +2,7 @@ version: 0.0
 os: linux
 files:
   - source: /
-    destination: /home/ubuntu/Pipeline-GithubActions
+    destination: /var/www/new-pipeline
 file_exists_behavior: OVERWRITE
 hooks:
   AfterInstall:

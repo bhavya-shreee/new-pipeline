@@ -1,4 +1,4 @@
 #!/bin/bash
-cd /home/ubuntu/Pipeline-GithubActions
+cd /var/www/new-pipeline
 npm install
 npm run build
