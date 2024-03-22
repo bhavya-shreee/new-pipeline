@@ -10,9 +10,9 @@ jobs:
     strategy:
       matrix:
         node-version: [16.x]
-        appname: ['new-pipeline-github']
-        deploy-group: ['depl-newpipel']
-        s3-bucket: ['new-pipe1']
+        appname: ['new-pipel']
+        deploy-group: ['depl-grup']
+        s3-bucket: ['today-s']
         s3-filename: ['staging-aws-codedeploy-${{ github.sha }}']
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
