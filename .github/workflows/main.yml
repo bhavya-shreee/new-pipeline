@@ -10,8 +10,8 @@ jobs:
     strategy:
       matrix:
         node-version: [16.x]
-        appname: ['try-grup']
-        deploy-group: ['depl-grup']
+        appname: ['trying']
+        deploy-group: ['try-grup']
         s3-bucket: ['today-s']
         s3-filename: ['staging-aws-codedeploy-${{ github.sha }}']
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
